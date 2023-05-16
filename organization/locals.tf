@@ -8,9 +8,9 @@ locals {
   lambdas = {
     "get_pets" = {
       filename = "${local.path}/lambda/lambda_get_pets.zip"
-      function_name = "getPets"
+      function_name = "get_pets"
       method = "GET"
-      handler = "lambda_get_list_pets.main"
+      handler = "lambda_get_pets.main"
       path = "/pets"
       part_path = "pets" 
       # TODO: no se que son estos ultimos 3

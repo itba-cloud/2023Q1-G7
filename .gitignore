@@ -25,6 +25,7 @@ tmp/
 
 # Carpeta de archivos generados por IDEs o editores de código
 .idea
+.idea/*
 .vscode/
 *.sublime-project
 *.sublime-workspace

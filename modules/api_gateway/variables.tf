@@ -14,7 +14,7 @@ variable "template_file" {
 }
 
 variable "template_file_vars" {
-    type = string
+    type = map(string)
     description = "OpenAPI file vars"
 }
 
