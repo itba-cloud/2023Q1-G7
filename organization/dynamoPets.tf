@@ -11,22 +11,22 @@ module "dynamodb_table_pet" {
   attributes = [
     {
       name = "ong_id"
-      type = "S"
+      type = "N"
     },
     {
       name = "id"
       type = "N"
     }
     , {
-      name = "pet_type"
+      name = "type"
       type = "N"
     }
+    # , {
+    #   name = "name"  NO ES NECESARIO PORQUE NO VA A NINGUN INDEX
+    #   type = "S"
+    # }
     , {
-      name = "pet_name"
-      type = "S"
-    }
-    , {
-      name = "pet_gender"
+      name = "age"
       type = "N"
     }
     , {
@@ -36,22 +36,15 @@ module "dynamodb_table_pet" {
   ]
 
   global_secondary_indexes = [{
-    name            = "TypeIndex"
-    hash_key        = "type"
-    write_capacity  = 5
-    read_capacity   = 5
-    projection_type = "ALL"
-    },
-    {
-      name            = "AgeIndex"
-      hash_key        = "age"
+      name            = "TypeIndex"
+      hash_key        = "type"
       write_capacity  = 5
       read_capacity   = 5
       projection_type = "ALL"
     },
     {
-      name            = "GenderIndex"
-      hash_key        = "gender"
+      name            = "AgeIndex"
+      hash_key        = "age"
       write_capacity  = 5
       read_capacity   = 5
       projection_type = "ALL"

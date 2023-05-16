@@ -14,14 +14,14 @@ module "dynamodb_table_ong" {
       name = "id"
       type = "N"
     }
-    , {
-      name = "email"
-      type = "s"
-    }
-    , {
-      name = "name"
-      type = "S"
-    }
+    # , {
+    #   name = "email"    NO SON NECESARIOS PORQUE NO VAN A NINGUN INDEX
+    #   type = "S"
+    # }
+    # , {
+    #   name = "name"
+    #   type = "S"
+    # }
   ]
 
 
