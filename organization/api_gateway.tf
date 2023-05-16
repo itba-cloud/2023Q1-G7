@@ -27,6 +27,13 @@ module "apigw" {
             type = "aws_proxy"
           }
         }
+        post = {
+          x-amazon-apigateway-integration = {
+            uri = module.lambda["post_pet"].invoke_arn
+            httpMethod = "POST"
+            type = "aws_proxy"
+          }
+        }
       }
     }
 

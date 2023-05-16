@@ -14,6 +14,15 @@ locals {
       path = "/pets"
       part_path = "pets" 
       # TODO: no se que son estos ultimos 3
+    },
+    "post_pet" = {
+      filename = "${local.path}/lambda/lambda_post_pet.zip"
+      function_name = "post_pet"
+      method = "POST"
+      handler = "lambda_post_pet.main"
+      path = "/pets"
+      part_path = "pets" 
+      # TODO: no se que son estos ultimos 3
     }
   }
 

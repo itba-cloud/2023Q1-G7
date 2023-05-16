@@ -1,31 +1,32 @@
-import boto3, json
+import boto3
+import json
+from decimal import Decimal
 
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, o):
+        if isinstance(o, Decimal):
+            if o % 1 > 0:
+                return float(o)
+            else:
+                return int(o)
+        return super(DecimalEncoder, self).default(o)
 
 def main(event, context):
-    # client = boto3.client('dynamodb')  # this will create dynamodb resource object and
-    #
-    # # Esta data está mockeada
-    #
-    # client.put_item(Item={
-    #     "appointment-id": {
-    #         "S": "1"
-    #     },
-    #     "date": {
-    #         "S": "10/02/22"
-    #     },
-    #     "assigned_to": {
-    #         "S": "pepe"
-    #     },
-    #     "client": {
-    #         "S": "juancito"
-    #     }
-    # },
-    #     TableName='appointments-table')
-
-    return {
+    dynamodb = boto3.resource('dynamodb')
+    table_name = 'pets'
+    table = dynamodb.Table(table_name)
+    
+    # Retrieve all pets from the DynamoDB table
+    response = table.scan()
+    pets = response['Items']
+    
+    # Prepare the response
+    response = {
         'statusCode': 200,
         'headers': {
             'Access-Control-Allow-Origin': '*',
         },
-        "body": "hola mundo"
+        'body': json.dumps(pets, cls=DecimalEncoder)
     }
+    
+    return response
