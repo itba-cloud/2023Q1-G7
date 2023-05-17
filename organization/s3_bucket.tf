@@ -1,41 +1,38 @@
 module "site_bucket" {
+
+  # TODO Funciona pero habría que ver si necesitamos algún parámetro más
+
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  force_destroy = true
-  bucket        = local.bucket_name
-
-  # Bucket policies
-  attach_policy = true
-  policy        = data.aws_iam_policy_document.site.json
-  # attach_deny_insecure_transport_policy = true
-  # attach_require_latest_tls_policy      = true
-
-  # S3 bucket-level Public Access Block configuration
-  block_public_acls       = true
-  block_public_policy     = true
-  ignore_public_acls      = true
-  restrict_public_buckets = true
-
-  acl = "private" # "acl" conflicts with "grant" and "owner"
+  bucket = local.site_bucket.name
 
   versioning = {
-    status     = true
-    mfa_delete = false
+    enabled = true
   }
+
+  # TODO Estas dos entradas se necesitan?
+  control_object_ownership = true
+  object_ownership         = "BucketOwnerPreferred"
+
+  attach_policy = true
+  policy        = data.aws_iam_policy_document.site.json
 
   website = {
     index_document = "index.html"
     error_document = "error.html"
   }
 
-
-  server_side_encryption_configuration = {
-    rule = {
-      apply_server_side_encryption_by_default = {
-        sse_algorithm = "AES256"
-      }
-    }
-  }
 }
 
+resource "aws_s3_object" "main-index" {
+  bucket = module.site_bucket.s3_bucket_id
+  key    = "index.html"
+  source = "../resources/web/index.html"
+}
+
+resource "aws_s3_object" "main-error" {
+  bucket = module.site_bucket.s3_bucket_id
+  key    = "error.html"
+  source = "../resources/web/error.html"
+}
 

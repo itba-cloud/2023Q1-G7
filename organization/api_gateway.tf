@@ -10,7 +10,6 @@ module "apigw" {
   account_id = data.aws_caller_identity.current.account_id
   template_file_vars = {
 #    TODO
-    id: "hola"
   }
   template_file = jsonencode({
     openapi = "3.0.1",

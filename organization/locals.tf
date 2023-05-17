@@ -31,4 +31,11 @@ locals {
     name = "main_api_gw",
     description = "Main API gateway",
   }
+
+  # Site bucket
+  site_bucket = {
+    name = "adoptemos-todos-s3",
+
+  }
+
 }
