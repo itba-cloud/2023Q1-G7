@@ -2,20 +2,25 @@ module "cdn" {
   source = "terraform-aws-modules/cloudfront/aws"
 
 
-  #  Extra CNAMEs (alternate domain names), if any, for this distribution.
-  aliases = []
+  tags = {
+    Name = "Cloudfront"
+  }
+
 
   #  Any comments you want to include about the distribution.
-  comment         = "My awesome CloudFront"
+  comment         = "CloudFront-Adoptemos-Todos"
   enabled         = true
   is_ipv6_enabled = true
 
   #  The price class for this distribution. One of PriceClass_All, PriceClass_200, PriceClass_100
-  # TODO Ver que son estas clases. Y cual usar.
   price_class = "PriceClass_All"
 
   retain_on_delete    = false
-  wait_for_deployment = false
+  wait_for_deployment = true
+
+  # When you enable additional metrics for a distribution, CloudFront sends up to 8 metrics to CloudWatch in the US East (N. Virginia) Region.
+  # This rate is charged only once per month, per metric (up to 8 metrics per distribution).
+  # create_monitoring_subscription = true
 
   #  Controls if CloudFront origin access identity should be created
   create_origin_access_identity = true
@@ -24,7 +29,6 @@ module "cdn" {
   }
 
   #  The logging configuration that controls how logs are written to your distribution (maximum one).
-  # TODO Setup logs bucket
     logging_config = {
       bucket = module.logs-bucket["cdn"].s3_bucket_bucket_domain_name
       prefix = "log/"
@@ -90,6 +94,11 @@ module "cdn" {
       max_ttl     = 86400
     }
   ]
+
+
+  geo_restriction = {
+      restriction_type = "none"
+  }
 
   viewer_certificate = {
     cloudfront_default_certificate = true

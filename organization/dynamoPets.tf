@@ -5,8 +5,6 @@ module "dynamodb_table_pet" {
   hash_key  = "ong_id"
   range_key = "id"
 
-  table_class = "STANDARD"
-
 
   attributes = [
     {
@@ -57,6 +55,9 @@ module "dynamodb_table_pet" {
       projection_type = "ALL"
     }
   ]
+
+  server_side_encryption_enabled = true
+  table_class                 = "STANDARD"
 
   tags = {
     Terraform   = "true"

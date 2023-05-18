@@ -25,7 +25,7 @@ module "dynamodb_table_ong" {
   ]
 
   server_side_encryption_enabled = true
-
+  table_class                 = "STANDARD"
 
   tags = {
     Terraform   = "true"

@@ -5,8 +5,8 @@ resource "aws_api_gateway_rest_api" "this" {
 }
 
 data "template_file" "apigw-openapi" {
-  template = var.template_file
-  vars = var.template_file_vars
+  template = var.body
+  #vars = var.template_file_vars
 }
 
 resource "aws_api_gateway_deployment" "this" {
@@ -14,6 +14,10 @@ resource "aws_api_gateway_deployment" "this" {
 
   triggers = {
     redeployment = sha1(jsonencode(aws_api_gateway_rest_api.this.body))
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 
 

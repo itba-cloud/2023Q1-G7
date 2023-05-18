@@ -8,15 +8,11 @@ variable "account_id" {
     description = "AWS Account ID"
 }
 
-variable "template_file" {
+variable "body" {
     type = string
-    description = "API template File"
+    description = "API Body"
 }
 
-variable "template_file_vars" {
-    type = map(string)
-    description = "OpenAPI file vars"
-}
 
 variable "name" {
     type = string

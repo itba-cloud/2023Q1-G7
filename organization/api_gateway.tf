@@ -8,10 +8,8 @@ module "apigw" {
   description     = local.apigw.description
   aws_region_name = data.aws_region.current.name
   account_id      = data.aws_caller_identity.current.account_id
-  template_file_vars = {
-    #    TODO
-  }
-  template_file = jsonencode({
+
+  body = jsonencode({
     openapi = "3.0.1",
     info = {
       title   = local.apigw.name
