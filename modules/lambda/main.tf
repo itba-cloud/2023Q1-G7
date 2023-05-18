@@ -18,5 +18,6 @@ resource "aws_lambda_permission" "this" {
   function_name = aws_lambda_function.this.function_name
   principal     = "apigateway.amazonaws.com"
 
-  source_arn = "${var.apigw_execution_arn}/*/${var.lambda_info.method}${var.lambda_info.path}"
+  #source_arn = "${var.apigw_execution_arn}/*/${var.lambda_info.method}${var.lambda_info.path}"
+  source_arn = "${var.apigw_execution_arn}/*"
 }

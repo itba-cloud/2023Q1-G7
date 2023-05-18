@@ -34,8 +34,25 @@ locals {
 
   # Site bucket
   site_bucket = {
-    name = "adoptemos-todos-s3",
-
+    prefix = "adoptemos-todos-s3-",
   }
+  filetypes = {
+    "html" : "text/html",
+    "jpg" : "image/jpg",
+    "jpeg" : "image/jpeg",
+    "png" : "image/png",
+    "css" : "text/css",
+    "js" : "application/javascript",
+    "json" : "application/json",
+  }
+
+  file_with_type = flatten([
+    for type, mime in local.filetypes : [
+      for key, value in fileset("../resources/web/", "**/*.${type}") : {
+        mime = mime
+        file_name = value
+      }
+    ]
+  ])
 
 }

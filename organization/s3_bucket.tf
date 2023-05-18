@@ -4,7 +4,7 @@ module "site_bucket" {
 
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = local.site_bucket.name
+  bucket_prefix = local.site_bucket.prefix
 
   versioning = {
     enabled = true
@@ -24,17 +24,15 @@ module "site_bucket" {
 
 }
 
-resource "aws_s3_object" "main-index" {
-  bucket = module.site_bucket.s3_bucket_id
-  key    = "index.html"
-  source = "../resources/web/index.html"
-  content_type  = "text/html"
+resource "aws_s3_object" "data" {
+  for_each = { for file in local.file_with_type : "${file.file_name}.${file.mime}" => file }
+
+  bucket       = module.site_bucket.s3_bucket_id
+  key          = each.value.file_name
+  
+  source       = "../resources/web/${each.value.file_name}"
+  etag         = filemd5("../resources/web/${each.value.file_name}")
+  content_type = each.value.mime
 }
 
-resource "aws_s3_object" "main-error" {
-  bucket = module.site_bucket.s3_bucket_id
-  key    = "error.html"
-  source = "../resources/web/error.html"
-  content_type  = "text/html"
-}
 
