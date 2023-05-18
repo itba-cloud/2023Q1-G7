@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "site" {
 
     principals {
       type        = "AWS"
-      identifiers = ["*"]
+      identifiers = module.cdn.cloudfront_origin_access_identity_iam_arns
     }
   }
 }

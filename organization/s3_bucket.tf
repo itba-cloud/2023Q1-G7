@@ -28,11 +28,13 @@ resource "aws_s3_object" "main-index" {
   bucket = module.site_bucket.s3_bucket_id
   key    = "index.html"
   source = "../resources/web/index.html"
+  content_type  = "text/html"
 }
 
 resource "aws_s3_object" "main-error" {
   bucket = module.site_bucket.s3_bucket_id
   key    = "error.html"
   source = "../resources/web/error.html"
+  content_type  = "text/html"
 }
 
