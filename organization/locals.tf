@@ -38,8 +38,7 @@ locals {
       prefix = "adoptemos-todos-site-s3-",
     }
     logs_bucket = {
-      prefix = "adoptemos-todos-logs-s3-",
-      acl    = "log-delivery-write"
+      prefixes = {site = "adoptemos-todos-logs-s3-", cdn = "cdn-logs-s3-"}
     }
     default_server_side_encryption = {
       rule = {

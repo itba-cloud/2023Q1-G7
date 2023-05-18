@@ -25,9 +25,10 @@ module "cdn" {
 
   #  The logging configuration that controls how logs are written to your distribution (maximum one).
   # TODO Setup logs bucket
-  #  logging_config = {
-  #    bucket = "logs-my-cdn.s3.amazonaws.com"
-  #  }
+    logging_config = {
+      bucket = module.logs-bucket["cdn"].s3_bucket_bucket_domain_name
+      prefix = "log/"
+    }
 
   #  One or more origins for this distribution (multiples allowed).
   origin = {

@@ -1,7 +1,5 @@
 module "site_bucket" {
 
-  # TODO Funciona pero habría que ver si necesitamos algún parámetro más
-
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket_prefix = local.buckets.site_bucket.prefix
@@ -22,7 +20,7 @@ module "site_bucket" {
   }
 
   logging = {
-    target_bucket = module.logs-bucket.s3_bucket_id
+    target_bucket = module.logs-bucket["site"].s3_bucket_id
     target_prefix = local.buckets.logs_prefix
   }
 
@@ -33,12 +31,14 @@ module "site_bucket" {
 module "logs-bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
+  for_each = local.buckets.logs_bucket.prefixes
+
   versioning = {
     enabled = true
   }
 
-  bucket_prefix = local.buckets.logs_bucket.prefix
-  acl           = local.buckets.logs_bucket.acl
+  bucket_prefix = each.value
+  acl           = "log-delivery-write"
 
   control_object_ownership = true
   object_ownership         = "BucketOwnerPreferred"
