@@ -9,6 +9,9 @@ resource "aws_lambda_function" "this" {
   tags = {
     name = "Lambda ${var.lambda_info.function_name}"
   }
+  lifecycle {
+    create_before_destroy = true
+  }
 
 }
 
