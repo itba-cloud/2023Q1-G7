@@ -36,11 +36,11 @@ module "dynamodb_table_pet" {
   ]
 
   global_secondary_indexes = [{
-      name            = "TypeIndex"
-      hash_key        = "type"
-      write_capacity  = 5
-      read_capacity   = 5
-      projection_type = "ALL"
+    name            = "TypeIndex"
+    hash_key        = "type"
+    write_capacity  = 5
+    read_capacity   = 5
+    projection_type = "ALL"
     },
     {
       name            = "AgeIndex"
