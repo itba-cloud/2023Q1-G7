@@ -9,20 +9,22 @@ locals {
     "get_pets" = {
       filename      = "${local.path}/lambda/lambda_get_pets.zip"
       function_name = "get_pets"
-      method        = "GET"
       handler       = "lambda_get_pets.main"
+      description   = "Get pets lambda"
+      runtime = "python3.9"
+      method = "GET"
       path          = "/pets"
       part_path     = "pets"
-      # TODO: no se que son estos ultimos 3
     },
     "post_pet" = {
       filename      = "${local.path}/lambda/lambda_post_pet.zip"
       function_name = "post_pet"
-      method        = "POST"
       handler       = "lambda_post_pet.main"
+      description   = "Post pet lambda"
+      runtime = "python3.9"
+      method = "POST"
       path          = "/pets"
       part_path     = "pets"
-      # TODO: no se que son estos ultimos 3
     }
   }
 

@@ -16,7 +16,7 @@ module "apigw" {
       version = "1.0.0"
     }
     paths = {
-      "api/pets" = {
+      "/pets" = {
         get = {
           x-amazon-apigateway-integration = {
             uri        = module.lambda["get_pets"].invoke_arn

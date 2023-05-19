@@ -27,7 +27,28 @@ variable "subnet_ids" {
   description = "The list of subnets created"
 }
 
-#variable "sg_ids" {
-#  type        = list(any)
-#  description = "The list of subnets created"
-#}
+variable "sg_ids" {
+  type        = list(any)
+  description = "Security groups ids"
+}
+
+variable "apigw_id" {
+  type = string
+  description = "Api Gateway ID"
+}
+
+variable "apigw_resource_id" {
+  type = string
+  description = "Api Gateway root resource ID"
+}
+
+variable "myregion" {
+  type = string
+  description = "My region"
+}
+
+variable "accountId" {
+  type = string
+  description = "Current Account Id"
+}
+
