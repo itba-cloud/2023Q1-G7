@@ -12,3 +12,8 @@ output "vpc_id" {
   description = "VPC id"
   value = aws_vpc.this.id
 }
+
+output "subnet_route_table_id" {
+  description = "Route table ids"
+  value = aws_route_table.private.id
+}
