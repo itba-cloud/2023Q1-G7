@@ -33,4 +33,5 @@
 * [count](https://github.com/gbudoberra/2023Q1-G7/blob/main/modules/vpc/main.tf)
 
 ## Diagrama de arquitectura (solo piezas a evaluar)
-![Cloud-TP2 drawio (2)](https://github.com/gbudoberra/2023Q1-G7/assets/67807324/793dffe6-1a48-41c9-a2e5-0543f2b2c28d)
+<img width="527" alt="Captura de Pantalla 2023-05-19 a la(s) 19 49 07" src="https://github.com/gbudoberra/2023Q1-G7/assets/67807324/150b6245-7c9c-4008-95ec-940d1a10c422">
+
