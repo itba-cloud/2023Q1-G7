@@ -4,10 +4,10 @@ resource "aws_vpc_endpoint" "this" {
   service_name      = var.service_name
   vpc_endpoint_type = var.endpoint_type
 
-  route_table_ids     = var.route_table_ids
+  route_table_ids = var.route_table_ids
 
   tags = {
-    Owner       = var.endpoint_owner
+    Owner = var.endpoint_owner
   }
 
   timeouts {

@@ -1,6 +1,6 @@
 output "vpc_cidr" {
   description = "CIDR block of the VPC"
-  value = aws_vpc.this.cidr_block
+  value       = aws_vpc.this.cidr_block
 }
 
 output "subnet_ids" {
@@ -10,10 +10,10 @@ output "subnet_ids" {
 
 output "vpc_id" {
   description = "VPC id"
-  value = aws_vpc.this.id
+  value       = aws_vpc.this.id
 }
 
 output "subnet_route_table_id" {
   description = "Route table ids"
-  value = aws_route_table.private.id
+  value       = aws_route_table.private.id
 }

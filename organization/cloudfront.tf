@@ -29,10 +29,10 @@ module "cdn" {
   }
 
   #  The logging configuration that controls how logs are written to your distribution (maximum one).
-    logging_config = {
-      bucket = module.logs-bucket["cdn"].s3_bucket_bucket_domain_name
-      prefix = "log/"
-    }
+  logging_config = {
+    bucket = module.logs-bucket["cdn"].s3_bucket_bucket_domain_name
+    prefix = "log/"
+  }
 
   #  One or more origins for this distribution (multiples allowed).
   origin = {
@@ -97,7 +97,7 @@ module "cdn" {
 
 
   geo_restriction = {
-      restriction_type = "none"
+    restriction_type = "none"
   }
 
   viewer_certificate = {

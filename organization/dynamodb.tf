@@ -8,11 +8,11 @@ module "dynamodb_table" {
   range_key = each.value.range_key
 
   attributes = each.value.attributes
-  tags = each.value.tags
+  tags       = each.value.tags
 
   global_secondary_indexes = each.value.global_secondary_indexes
 
   server_side_encryption_enabled = true
-  table_class                 = "STANDARD"
+  table_class                    = "STANDARD"
 
 }

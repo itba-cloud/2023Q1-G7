@@ -11,8 +11,8 @@ locals {
       function_name = "get_pets"
       handler       = "lambda_get_pets.main"
       description   = "Get pets lambda"
-      runtime = "python3.9"
-      method = "GET"
+      runtime       = "python3.9"
+      method        = "GET"
       path          = "/pets"
       part_path     = "pets"
     },
@@ -21,8 +21,8 @@ locals {
       function_name = "post_pet"
       handler       = "lambda_post_pet.main"
       description   = "Post pet lambda"
-      runtime = "python3.9"
-      method = "POST"
+      runtime       = "python3.9"
+      method        = "POST"
       path          = "/pets"
       part_path     = "pets"
     }
@@ -31,102 +31,102 @@ locals {
   # DynamoDB
   dynamodb = {
     tables = {
-        ong = {
-              name      = "ong"
-              hash_key  = "neighborhood"
-              range_key = "id"
+      ong = {
+        name      = "ong"
+        hash_key  = "neighborhood"
+        range_key = "id"
 
-              attributes = [
-                      {
-                        name = "neighborhood"
-                        type = "S"
-                      },
-                      {
-                        name = "id"
-                        type = "N"
-                      }
-                      # , {
-                      #   name = "email"    NO SON NECESARIOS PORQUE NO VAN A NINGUN INDEX
-                      #   type = "S"
-                      # }
-                      # , {
-                      #   name = "name"
-                      #   type = "S"
-                      # }
-                  ]
+        attributes = [
+          {
+            name = "neighborhood"
+            type = "S"
+          },
+          {
+            name = "id"
+            type = "N"
+          }
+          # , {
+          #   name = "email"    NO SON NECESARIOS PORQUE NO VAN A NINGUN INDEX
+          #   type = "S"
+          # }
+          # , {
+          #   name = "name"
+          #   type = "S"
+          # }
+        ]
 
-              global_secondary_indexes = []
+        global_secondary_indexes = []
 
-              tags = {
-                Entity = "ONG"
-                #                Terraform   = "true"
-                #                Environment = "staging"
-              }
-
+        tags = {
+          Entity = "ONG"
+          #                Terraform   = "true"
+          #                Environment = "staging"
         }
 
-        pets = {
-                name      = "pets"
-                hash_key  = "ong_id"
-                range_key = "id"
+      }
+
+      pets = {
+        name      = "pets"
+        hash_key  = "ong_id"
+        range_key = "id"
 
 
-                attributes = [
-                  {
-                    name = "ong_id"
-                    type = "N"
-                  },
-                  {
-                    name = "id"
-                    type = "N"
-                  }
-                  , {
-                    name = "type"
-                    type = "N"
-                  }
-                  # , {
-                  #   name = "name"  NO ES NECESARIO PORQUE NO VA A NINGUN INDEX
-                  #   type = "S"
-                  # }
-                  , {
-                    name = "age"
-                    type = "N"
-                  }
-                  , {
-                    name = "situation"
-                    type = "N"
-                  }
-                ]
+        attributes = [
+          {
+            name = "ong_id"
+            type = "N"
+          },
+          {
+            name = "id"
+            type = "N"
+          }
+          , {
+            name = "type"
+            type = "N"
+          }
+          # , {
+          #   name = "name"  NO ES NECESARIO PORQUE NO VA A NINGUN INDEX
+          #   type = "S"
+          # }
+          , {
+            name = "age"
+            type = "N"
+          }
+          , {
+            name = "situation"
+            type = "N"
+          }
+        ]
 
-                global_secondary_indexes = [{
-                  name            = "TypeIndex"
-                  hash_key        = "type"
-                  write_capacity  = 5
-                  read_capacity   = 5
-                  projection_type = "ALL"
-                  },
-                  {
-                    name            = "AgeIndex"
-                    hash_key        = "age"
-                    write_capacity  = 5
-                    read_capacity   = 5
-                    projection_type = "ALL"
-                  },
-                  {
-                    name            = "SituationIndex"
-                    hash_key        = "situation"
-                    write_capacity  = 5
-                    read_capacity   = 5
-                    projection_type = "ALL"
-                  }
-                ]
+        global_secondary_indexes = [{
+          name            = "TypeIndex"
+          hash_key        = "type"
+          write_capacity  = 5
+          read_capacity   = 5
+          projection_type = "ALL"
+          },
+          {
+            name            = "AgeIndex"
+            hash_key        = "age"
+            write_capacity  = 5
+            read_capacity   = 5
+            projection_type = "ALL"
+          },
+          {
+            name            = "SituationIndex"
+            hash_key        = "situation"
+            write_capacity  = 5
+            read_capacity   = 5
+            projection_type = "ALL"
+          }
+        ]
 
-                tags = {
-                  entity = "Pet"
-#                  Terraform   = "true"
-#                  Environment = "staging"
-                }
+        tags = {
+          entity = "Pet"
+          #                  Terraform   = "true"
+          #                  Environment = "staging"
         }
+      }
     }
   }
 
@@ -142,7 +142,7 @@ locals {
       prefix = "adoptemos-todos-site-s3-",
     }
     logs_bucket = {
-      prefixes = {site = "adoptemos-todos-logs-s3-", cdn = "cdn-logs-s3-"}
+      prefixes = { site = "adoptemos-todos-logs-s3-", cdn = "cdn-logs-s3-" }
     }
     default_server_side_encryption = {
       rule = {

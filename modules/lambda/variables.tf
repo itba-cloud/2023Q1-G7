@@ -33,22 +33,22 @@ variable "sg_ids" {
 }
 
 variable "apigw_id" {
-  type = string
+  type        = string
   description = "Api Gateway ID"
 }
 
 variable "apigw_resource_id" {
-  type = string
+  type        = string
   description = "Api Gateway root resource ID"
 }
 
 variable "myregion" {
-  type = string
+  type        = string
   description = "My region"
 }
 
 variable "accountId" {
-  type = string
+  type        = string
   description = "Current Account Id"
 }
 

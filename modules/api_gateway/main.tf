@@ -1,7 +1,7 @@
 resource "aws_api_gateway_rest_api" "this" {
-  name = var.name
+  name        = var.name
   description = var.description
-  body = data.template_file.apigw-openapi.rendered
+  body        = data.template_file.apigw-openapi.rendered
 }
 
 data "template_file" "apigw-openapi" {

@@ -20,11 +20,11 @@ resource "aws_subnet" "this" {
 }
 
 resource "aws_route_table" "private" {
-  vpc_id   = aws_vpc.this.id
+  vpc_id = aws_vpc.this.id
 }
 
 resource "aws_route_table_association" "private" {
-  count = length(local.private_subnets)
+  count          = length(local.private_subnets)
   subnet_id      = aws_subnet.this[count.index].id
   route_table_id = aws_route_table.private.id
 }
