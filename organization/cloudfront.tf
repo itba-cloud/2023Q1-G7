@@ -79,7 +79,7 @@ module "cdn" {
 
   ordered_cache_behavior = [
     {
-      path_pattern           = "prod_stage/api/*"
+      path_pattern           = "prod_stage/*"
       target_origin_id       = module.apigw.id
       viewer_protocol_policy = "redirect-to-https"
 
