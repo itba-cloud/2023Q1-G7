@@ -1,10 +1,15 @@
 # TP3 Cloud Computing - Grupo 7
 
 ## Módulos utilizados
-
+### Externos
 #### [Bucket S3](https://github.com/terraform-aws-modules/terraform-aws-s3-bucket)
 #### [Cloudfront](https://github.com/terraform-aws-modules/terraform-aws-cloudfront)
 #### [Dynamo](https://github.com/terraform-aws-modules/terraform-aws-dynamodb-table)
+### Propios
+#### [VPC](https://github.com/gbudoberra/2023Q1-G7/blob/main/modules/vpc)
+#### [API Gateway](https://github.com/gbudoberra/2023Q1-G7/blob/main/modules/api_gateway)
+#### [Lambda](https://github.com/gbudoberra/2023Q1-G7/blob/main/modules/lambda)
+#### [VPC Endpoint](https://github.com/gbudoberra/2023Q1-G7/blob/main/modules/vpc_endpoint)
 
 ## Componentes a evaluar
 
